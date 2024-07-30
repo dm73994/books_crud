@@ -1,8 +1,10 @@
 package com.library_test.library_test.controllers;
 
+import com.library_test.library_test.Validators.BookValidator;
 import com.library_test.library_test.models.Book;
 import com.library_test.library_test.services.BookService;
 import io.micrometer.core.annotation.Timed;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,23 +32,22 @@ public class BookController {
     public ResponseEntity<List<Book>> findBookByQuerys(
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String author,
-            @RequestParam(required = false) String publisher,
-            @RequestParam(required = false) Integer releaseYear
+            @RequestParam(required = false) String publisher
     ){
-        List<Book> book = this.bookService.findBooksByCriteria(title, author, publisher, releaseYear);
+        List<Book> book = this.bookService.findBooksByCriteria(title, author, publisher);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
     @PostMapping
     @Timed(value = "Post.create book.time", description = "Time taken to execute post endpoint to create a book")
-    public ResponseEntity<Book> createBook(@RequestBody Book newBook){
+    public ResponseEntity<Book> createBook(@Valid @RequestBody BookValidator newBook){
         Book serviceBook = this.bookService.createBook(newBook);
         return new ResponseEntity<>(serviceBook, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
     @Timed(value = "Post.createBook.time", description = "Time taken to execute post endpoint to create a book")
-    public void updateBook(@RequestBody Book newBookData, @PathVariable Integer id){
+    public void updateBook(@Valid @RequestBody BookValidator newBookData, @PathVariable Integer id){
         newBookData.setId(id);
         this.bookService.updateBookData(newBookData);
     }
