@@ -77,3 +77,5 @@ Sometimes the pem files on /certs folder are not registered, so for this just cu
 - **rsa.public-key=classpath:com/library_test/library_test/certs/public.pem
 - **rsa.private-key = classpath:com/library_test/library_test/certs/private.pem
 
+- To use postman go to the next link where you will find the schema collection so you can import it into your local machine or postman: https://api.postman.com/collections/16207306-ecfe895a-58b7-47e0-9d9a-ebd9d1cb8eb4?access_key=PMAT-01J40MMQP87F3RGBYMXPP41W2X
+
