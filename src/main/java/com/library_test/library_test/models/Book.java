@@ -17,6 +17,8 @@ public class Book {
     private String author;
     private String publisher;
     private String description;
+
+    @Column(name = "release_date")
     private LocalDate releaseDate;
 
 }

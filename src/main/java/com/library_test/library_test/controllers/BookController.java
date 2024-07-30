@@ -48,8 +48,7 @@ public class BookController {
     @PatchMapping("/{id}")
     @Timed(value = "Post.createBook.time", description = "Time taken to execute post endpoint to create a book")
     public void updateBook(@Valid @RequestBody BookValidator newBookData, @PathVariable Integer id){
-        newBookData.setId(id);
-        this.bookService.updateBookData(newBookData);
+        this.bookService.updateBookData(newBookData, id);
     }
 
 

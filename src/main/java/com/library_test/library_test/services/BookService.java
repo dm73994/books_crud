@@ -31,22 +31,24 @@ public class BookService {
 
     public Book createBook(BookValidator newBook){
         Book book = new Book();
-        book.setAuthor(newBook.getAuthor().toLowerCase(Locale.ROOT));
-        book.setPublisher(newBook.getPublisher().toLowerCase(Locale.ROOT));
-        book.setDescription(newBook.getDescription().toLowerCase(Locale.ROOT));
+        book.setTitle(newBook.getTitle());
+        book.setAuthor(newBook.getAuthor());
+        book.setPublisher(newBook.getPublisher());
+        book.setDescription(newBook.getDescription());
         book.setReleaseDate(newBook.getReleaseDate());
+
 
         return this.repo.save(book);
     }
 
-    public void updateBookData(BookValidator newBookData){
+    public void updateBookData(BookValidator newBookData, Integer id){
         Book book = new Book();
-        book.setTitle(newBookData.getTitle().toLowerCase());
-        book.setAuthor(newBookData.getAuthor().toLowerCase(Locale.ROOT));
-        book.setPublisher(newBookData.getPublisher().toLowerCase(Locale.ROOT));
-        book.setDescription(newBookData.getDescription().toLowerCase(Locale.ROOT));
+        book.setTitle(newBookData.getTitle());
+        book.setAuthor(newBookData.getAuthor());
+        book.setPublisher(newBookData.getPublisher());
+        book.setDescription(newBookData.getDescription());
         book.setReleaseDate(newBookData.getReleaseDate());
-        this.repo.updateBookById(book.getId(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getReleaseDate(), book.getDescription());
+        this.repo.updateBookById(id, book.getTitle(), book.getAuthor(), book.getPublisher(), book.getReleaseDate(), book.getDescription());
     }
 
     public void deleteBook(Integer bookId){
