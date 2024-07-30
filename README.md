@@ -2,6 +2,16 @@
 
 This project is a technical test for a backend developer position. It uses an MVC architecture chosen for its simplicity and suitability for managing two main entities: `Book` and `User`. This architecture was selected to streamline development and optimize implementation time. For security, an asynchronous token-based authentication system has been implemented instead of traditional encryption keys, as it offers greater flexibility and additional benefits.
 
+## Table of Contents
+
+- [Features](#features)
+- [Use Cases](#use-cases)
+- [Entities and Validations](#entities-and-validations)
+  - [Book](#book)
+  - [User](#user)
+- [Usage](#usage)
+- [Additional Configuration](#additional-configuration)
+
 ## Features
 
 - **MVC Architecture**: Selected for its simplicity and efficiency in managing two main entities.
@@ -11,12 +21,44 @@ This project is a technical test for a backend developer position. It uses an MV
 
 ## Use Cases
 
+![biblioteca_prueba_técnica](https://github.com/user-attachments/assets/46ba7d7c-f62b-4ac4-9bfa-5b5a9239c21e)
+![biblioteca_prueba_técnica3](https://github.com/user-attachments/assets/c1678eb5-c37b-44dc-b685-347e1e1149cc)
+![biblioteca_prueba_técnica2](https://github.com/user-attachments/assets/494e67e8-d893-4607-8915-439d261d7e6f)
 
 ## Entities and Validations
 
 The system manages two main entities: `Book` and `User`, using an H2 database. The following validations have been implemented:
 
-- **User (`User`)**:
+### Book (`Book`):
+
+The `Book` entity is represented by the following JSON schema:
+
+```json
+{
+    "title": "string",
+    "author": "string",
+    "releaseDate": "yyyy-mm-dd",
+    "publisher": "string",
+    "description": "string"
+}
+```
+**Validations:**
+- `title`: Must not be blank and must be longer than 2 characters.
+- `author`: Must not be blank.
+- `publisher`: Must not be blank.
+- `description`: Optional field.
+- `releaseDate`: Optional field.
+
+### User (`User`):
+The `User` entity is represented by the following JSON schema:
+```json
+{
+    "username": "string",
+    "password": "string"
+}
+```
+
+**Validations:**
   - Password must be at least 8 characters long.
   - The `username` field cannot be empty.
 
